@@ -23,9 +23,7 @@ scroll-snap-type: y mandatory;
 overflow-x: hidden;
 scroll-padding: 0; 
 }
-html {
-  
-}
+
 
 .slide {
 height: 100vh;
@@ -42,21 +40,7 @@ align-items: center;
 /* color: black; */
 }
 /* Your main wrapper styling - ensure it fits within a slide if intended */
-.main_wrapper {
- /* width: 800px;
- margin: 0 auto;  */
 
- /* color: black; */
- /* background: rgba(255,255,255);
- border-radius: 20px;
-
- background: rgba(39, 39, 39, 0.1);
- backdrop-filter: blur(60px);
-
- -webkit-backdrop-filter: blur(60px);
- border: 2px solid rgba(255, 255, 255, 0.2);
- box-shadow: 0 0 80px rgba(0, 0, 0, 0.3); */
-}
 .top{
     background-image: url(../resource/main/space.avif);
     background-size: 100% 100%;
@@ -150,7 +134,7 @@ align-items: center;
   }
   
 
-  .header_button,.rain_button,.task_button,.location_button{
+  .header_button,.rain_button,.task_button,.location_button,.list_home_wrapper{
     width:200px;
     font-size: 20px;
     font-family: "Tektur", sans-serif;
@@ -164,7 +148,7 @@ align-items: center;
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
   }
-  .header_button_wrapper{
+  .header_button_wrapper,.list_home_wrapper{
     display: flex;
     justify-content: center;
     width: 150px;
@@ -204,13 +188,13 @@ align-items: center;
      
   }
   
-.task,.scenario_one{
+.scenario_one{
   background: #134E5E;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to bottom, #71B280, #134E5E);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to bottom, #71B280, #134E5E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
-.location,.scenario_two{
+.location,.scenario_two,.task{
   background: #780206;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to bottom, #061161, #780206);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to bottom, #061161, #780206); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -229,4 +213,227 @@ background: linear-gradient(to bottom, #061161, #780206); /* W3C, IE 10+/ Edge, 
 } */
 .socials img{
   width: 40px;
+}
+
+
+/* Container styling */
+.first_action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;               /* full viewport height */
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Form glassmorphism base */
+:root {
+  --bg: #121217;
+  --fg: #e0e0e0;
+  --neon: #00e5ff;
+  --glass: rgba(255,255,255,0.05);
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* DARK MODE */
+body.dark-mode {
+  --bg: #e0e0e0;
+  --fg: #121217;
+  --neon: #d100c4;
+}
+
+/* Wrapper centering */
+.list_wrapper {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 90%; max-width: 600px;
+  text-align: center;
+}
+
+/* Headline */
+.list_title {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+/* Glassmorphic form blocks */
+.action_block {
+  margin-bottom: 1.5rem;
+}
+.form-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--glass);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+/* Floating Labels */
+.floating-input {
+  position: relative;
+  flex: 1;
+}
+.floating-input input {
+  width: 100%;
+  padding: 0.8rem 0.5rem 0.2rem;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid var(--fg);
+  border-left: 3px solid var(--fg);
+  border-right: 3px solid var(--fg);
+  color: var(--fg);
+  outline: none;
+  transition: border-color 0.3s;
+}
+.floating-input input:focus {
+  border-color: var(--neon);
+}
+.floating-input label {
+  position: absolute;
+  left: 0.5rem; top: 0.8rem;
+  pointer-events: none;
+  transition: transform 0.2s, font-size 0.2s;
+  color: rgba(var(--fg), 0.6);
+}
+.floating-input input:focus + label,
+.floating-input input:not(:placeholder-shown) + label {
+  transform: translateY(-1.2rem);
+  font-size: 0.8rem;
+  color: var(--neon);
+}
+
+/* Neon Buttons */
+.neon-btn {
+  padding: 0.6rem 1rem;
+  background: var(--neon);
+  color: var(--bg);
+  border: none; border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--neon), 0 0 16px rgba(var(--neon), 0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.neon-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px var(--neon), 0 0 24px rgba(var(--neon),0.6);
+}
+/* Outline variant for reset */
+.neon-btn.outline {
+  background: transparent;
+  color: var(--neon);
+  box-shadow: none;
+  border: 2px solid var(--neon);
+}
+.neon-btn.outline:hover {
+  background: rgba(var(--neon),0.1);
+}
+
+/* Neon Checkbox */
+.neon-checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px; height: 24px;
+  border: 2px solid var(--neon);
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.neon-checkbox:checked {
+  background: var(--neon);
+  box-shadow: 0 0 8px var(--neon), inset 0 0 4px var(--neon);
+}
+.neon-checkbox:checked::after {
+  content: '✔';
+  color: var(--bg);
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-60%);
+  font-size: 16px;
+}
+
+/* Dark-mode toggle button */
+.dark-toggle {
+  position: fixed; top: 1rem; right: 1rem;
+  background: var(--glass);
+  border: none; border-radius: 50%;
+  width: 2.5rem; height: 2.5rem;
+  font-size: 1.2rem; cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s;
+}
+.dark-toggle:hover {
+  transform: rotate(90deg);
+}
+
+.list_head,.task_title {
+  position: relative;
+  margin-bottom: 2rem;
+  overflow: hidden; /* for the slide-in effect */
+}
+
+.list_title,.task_schedule {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  background: linear-gradient(90deg, #00e5ff, #d100c4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: slideIn 0.8s ease-out forwards;
+  opacity: 0;
+  margin: 0;
+  padding-bottom: 0.5rem;
+}
+
+.list_title::after,.task_schedule::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  background: #00e5ff;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  animation: neonLine 1s ease-out 0.8s forwards;
+  box-shadow: 0 0 8px #00e5ff, 0 0 16px rgba(0, 229, 255, 0.6);
+}
+
+/* Slide-in from left & fade */
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+/* Underline growth */
+@keyframes neonLine {
+  to {
+    width: 60%;
+  }
+  from {
+    width: 0;
+  }
+}
+
+/* Dark-mode support via CSS variable fallback */
+body.dark-mode .list_title::after {
+  background: #d100c4;
+  box-shadow: 0 0 8px #d100c4, 0 0 16px rgba(209, 0, 196, 0.6);
 }
