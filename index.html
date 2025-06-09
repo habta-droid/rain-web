@@ -26,12 +26,23 @@
     </header>
     <section class="rain_status slide">
         <div class="rain_wrapper">
-            <div class="rain_box">
+            <div class="rain_box text-center">
                 <div class="rain_title text-center"><h2> rain_status</h2></div>
                 <div class="rain_motto text-center pt-5">predicts the most likely time i will rain</div>
                 <div class="rain_button_wrapper text-center pt-5">
                     <button  class="rain_button">see</button>
                 </div>
+            </div>
+        </div>
+        <div class="rain_time_wrapper d-none" >
+            <form  id="rain_form" method="post" class="text-center pt-5">
+                <label for="user_location">enter your city</label><br>
+                <input type="text" name="user_location" id="user_location">
+                <button type="submit">get rain time</button><hr>
+                <div id="rain_time"></div>
+            </form>
+            <div class="text-center pt-4" >
+                <button class="return_rain_home">return home</button>
             </div>
         </div>
 
@@ -160,7 +171,7 @@
     </div>
     </footer>
 
-    <script src="script/script.js" defer></script>
+    <script type="module" src="script/script.js" defer></script>
 
 </body>
 </html>

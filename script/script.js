@@ -1,26 +1,30 @@
 
-class Schedule {
-    constructor(action, time) {
-    this.list_map = new Map();
-    this.list_map.set(action, time);
-    }
-    
-    add(new_action, new_time) {
-    this.list_map.set(new_action, new_time);
-    }
-    
-    remove(removed_action) {
-    this.list_map.delete(removed_action);
-    }
+import  { Schedule, RainPredictor } from "./rain_class.js"
 
-    view() {
-        for (const [key, value] of this.list_map) {
-          console.log(`${key}: ${value}`);
-        }   
-    }
-}
 
-plan = new Schedule("study", 30);
+
+// class Schedule {
+//     constructor(action, time) {
+//     this.list_map = new Map();
+//     this.list_map.set(action, time);
+//     }
+    
+//     add(new_action, new_time) {
+//     this.list_map.set(new_action, new_time);
+//     }
+    
+//     remove(removed_action) {
+//     this.list_map.delete(removed_action);
+//     }
+
+//     view() {
+//         for (const [key, value] of this.list_map) {
+//           console.log(`${key}: ${value}`);
+//         }   
+//     }
+// }
+
+let plan = new Schedule("study", 30);
 plan.add("project", 20);
 plan.remove("project");
 plan.view()
@@ -188,5 +192,63 @@ check_four.addEventListener("change", () => {
 });
 
 
-plan.view();
+const rain_form = document.getElementById("rain_form");
+let store = document.getElementById("rain_time");
 
+function get_weather(e) {
+  e.preventDefault();
+  const user_location = document.getElementById("user_location");
+  const city_name = user_location.value.trim();
+
+  fetch(
+    `https://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=9af8bc1b6986edcd1edf0598f4a26dd8&units=metric`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+
+      let rain_status = {
+        clouds_all: data.clouds.all,
+        humidity: data.main.humidity,
+        pressure: data.main.pressure,
+      };
+      
+      const predictor = new RainPredictor();
+      const p1 = predictor.update(rain_status);
+      const { confidence } = p1;
+      console.log(predictor.getMedianETA());
+      const time_to_rain = predictor.getMedianETA();
+
+
+    store.innerHTML = `<h5>approximate time to rain in : ${time_to_rain} minutes</h5>
+                   <h5>description: ${data.weather[0].description}</h5>`;
+      console.log(rain_status);
+    })
+    .catch((err) => {
+      store.innerHTML = "<h5>could't find the  city,try again</h5>";
+      console.log(err);
+    });
+}
+
+rain_form.addEventListener("submit", get_weather);
+
+
+const rain_btn = document.querySelector(".rain_button");
+const rain_time_wrapper = document.querySelector(".rain_time_wrapper");
+const return_rain_home = document.querySelector(".return_rain_home");
+const rain_wrapper = document.querySelector(".rain_wrapper");
+
+function show_rain(e) {
+  e.preventDefault();
+  rain_wrapper.classList.add("d-none");
+  rain_time_wrapper.classList.remove("d-none");
+}
+
+rain_btn.addEventListener("click", show_rain);
+
+function show_rain_home(e) {
+  e.preventDefault();
+  rain_wrapper.classList.remove("d-none");
+  rain_time_wrapper.classList.add("d-none");
+}
+
+return_rain_home.addEventListener("click", show_rain_home);

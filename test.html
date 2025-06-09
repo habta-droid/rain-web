@@ -3,34 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="test.css">
-    <title>Document</title>
+    <title>Futuristic Rain Status</title>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- [ 1. The Setup & Futuristic Theme ] --- */
+        :root {
+            --primary-color: #00f2ea; /* Neon Cyan/Teal */
+            --secondary-color: #ff00c1; /* Neon Magenta */
+            --bg-color-dark: #0f001a;   /* Deep Space Purple */
+            --text-color: #f0f0f0;
+            --glass-bg: rgba(26, 8, 43, 0.4); /* Semi-transparent glass */
+            --glow-shadow: 0 0 15px rgba(0, 242, 234, 0.5), 0 0 30px rgba(0, 242, 234, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color-dark);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* Hide scrollbars, let the content be the focus */
+            position: relative; /* For pseudo-elements */
+        }
+
+        /* --- [ 2. The Animated Background ] --- */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--bg-color-dark), var(--secondary-color));
+            opacity: 0.15;
+            animation: background-pan 25s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes background-pan {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        /* --- [ 3. Main Container & Entry Animation ] --- */
+        .rain_status {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .slide {
+            animation: slide-in 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            opacity: 0;
+        }
+
+        @keyframes slide-in {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* --- [ 4. The Glassmorphism Card Style ] --- */
+        .rain_box, #rain_form form {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px); /* Safari support */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 0 0 2px rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        /* Elements to show/hide */
+        .d-none { display: none; }
+        .d-block { display: block; }
+        
+        /* --- [ 5. Modern Typography & Animated Text ] --- */
+        .rain_title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+            animation: text-flicker 4s linear infinite;
+        }
+
+        @keyframes text-flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                text-shadow:
+                    0 0 4px var(--primary-color),
+                    0 0 10px var(--primary-color),
+                    0 0 20px var(--primary-color),
+                    0 0 40px var(--primary-color);
+                opacity: 1;
+            }
+            20%, 24%, 55% { text-shadow: none; opacity: 0.7; }
+        }
+
+        .rain_motto {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        .text-center { text-align: center; }
+        .pt-5 { padding-top: 3rem; } /* Helper class */
+
+        /* --- [ 6. Futuristic Buttons & Forms ] --- */
+        .rain_button, #rain_form button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-color-dark);
+            border: none;
+            border-radius: 50px;
+            padding: 15px 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--glow-shadow);
+        }
+
+        .rain_button:hover, #rain_form button:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 242, 234, 0.8), 0 0 50px rgba(255, 0, 193, 0.5);
+        }
+
+        label[for="user_location"] {
+            display: block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+
+        #user_location {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-color);
+            font-size: 1.2rem;
+            padding: 10px 5px;
+            width: 80%;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        #user_location:focus {
+            border-bottom-color: var(--primary-color);
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+            margin: 30px auto;
+            width: 80%;
+        }
+
+        #rain_time {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            text-shadow: 0 0 5px var(--primary-color);
+            min-height: 30px; /* Reserve space */
+        }
+    </style> -->
 </head>
 <body>
-    <!-- <form action="/signup" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username"  placeholder="username">
-      
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email">
-      
-        <label for="bio">Bio:</label>
-        <textarea id="bio" name="bio"></textarea>
-      
-        <input type="checkbox" id="tos" name="tos" required>
-        <label for="tos">I agree to the Terms of Service</label>
-      
-        <button type="submit">Register</button>
-      </form> -->
 
-      <div class="input-group">
-        <input type="text" placeholder="Type something..." />
-        <button>Submit</button>
-      </div>
-      
+    <section class="rain_status slide">
+        <!-- Screen 1: Welcome -->
+        <div class="rain_wrapper"> <!-- d-none removed initially to be handled by JS -->
+            <div class="rain_box">
+                <div class="rain_title text-center"><h2>rain_status</h2></div>
+                <div class="rain_motto text-center pt-5">predicts the most likely time it will rain</div>
+                <div class="rain_button_wrapper text-center pt-5">
+                    <button id="show-form-btn" class="rain_button">See</button>
+                </div>
+            </div>
+        </div>
+        <!-- Screen 2: Form -->
+        <div id="rain_form" class="d-none"> <!-- Initially hidden -->
+            <form method="post" class="text-center pt-5">
+                <label for="user_location">Enter your city</label><br>
+                <input type="text" name="user_location" id="user_location"><hr>
+                <button type="submit">Get Rain Time</button>
+                <div id="rain_time"><!-- Example: Likely rain around 4:00 PM --></div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Simple JavaScript to handle the transition between the two screens
+        const welcomeScreen = document.querySelector('.rain_wrapper');
+        const formScreen = document.getElementById('rain_form');
+        const showFormBtn = document.getElementById('show-form-btn');
+        const form = document.querySelector('#rain_form form');
+
+        showFormBtn.addEventListener('click', () => {
+            welcomeScreen.classList.add('d-none'); // Hide welcome screen
+            formScreen.classList.remove('d-none'); // Show form screen
+            formScreen.classList.add('d-block');
+        });
+        
+        // Example: Handle form submission to show a result
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent actual form submission
+            const rainTimeDiv = document.getElementById('rain_time');
+            rainTimeDiv.innerText = 'Calculating...';
+
+            // Simulate an API call
+            setTimeout(() => {
+                const city = document.getElementById('user_location').value;
+                if(city){
+                   rainTimeDiv.innerText = `Forecast for ${city}: Rain likely at 8:30 PM`;
+                } else {
+                   rainTimeDiv.innerText = 'Please enter a city.'; 
+                }
+            }, 1500);
+        });
+    </script>
+
 </body>
 </html>
-
-
-
-  
