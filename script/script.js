@@ -1,32 +1,16 @@
+import {
+  Schedule,
+  RainPredictor,
+  Location,
+  haversineDistance,
+} from "./rain_class.js";
 
-import  { Schedule, RainPredictor } from "./rain_class.js"
 
 
+let place = new Location("sample", 34, 32);
+let plan = new Schedule("study",0);
 
-// class Schedule {
-//     constructor(action, time) {
-//     this.list_map = new Map();
-//     this.list_map.set(action, time);
-//     }
-    
-//     add(new_action, new_time) {
-//     this.list_map.set(new_action, new_time);
-//     }
-    
-//     remove(removed_action) {
-//     this.list_map.delete(removed_action);
-//     }
-
-//     view() {
-//         for (const [key, value] of this.list_map) {
-//           console.log(`${key}: ${value}`);
-//         }   
-//     }
-// }
-
-let plan = new Schedule("study", 30);
-plan.add("project", 20);
-plan.remove("project");
+// place.view_place()
 plan.view()
 
 const task_button = document.getElementById("schedule_button");
@@ -44,6 +28,98 @@ list_button.addEventListener("click", () => {
     schedule.classList.remove("d-none");
     list.classList.add("d-none");
 })
+
+const location_button = document.getElementById("loc_location_bty");
+const lo_list_button = document.getElementById("lo_list_button");
+const location_wrapper = document.querySelector(".location_wrapper");
+const lo_list_wrapper = document.querySelector(".lo_list_wrapper");
+
+lo_list_button.addEventListener("click", () => {
+  lo_list_wrapper.classList.add("d-none");
+  location_wrapper.classList.remove("d-none");
+});
+
+location_button.addEventListener("click", () => {
+  lo_list_wrapper.classList.remove("d-none");
+  location_wrapper.classList.add("d-none");
+});
+
+
+const loct_latitude_one = document.getElementById("loct_latitude_one");
+const loct_longtude_one = document.getElementById("loct_longtude_one");
+const space_one = document.getElementById("space_one");
+
+const space_two = document.getElementById("space_two");
+const loct_latitude_two = document.getElementById("loct_latitude_two");
+const loct_longtude_two = document.getElementById("loct_longtude_two");
+
+
+const lo_first_form = document.getElementById("lo_first_form");
+const lo_second_form = document.getElementById("lo_second_form");
+
+lo_first_form.addEventListener("submit", first_location);
+lo_second_form.addEventListener("submit", second_location);
+
+function first_location(e) {
+  e.preventDefault();
+  place.add_place(
+    space_one.value.trim(),
+    Number(loct_latitude_one.value),
+    Number(loct_longtude_one.value)
+  );
+}
+
+function second_location(e) {
+  e.preventDefault();
+  place.add_place(
+    space_two.value.trim(),
+    Number(loct_latitude_two.value),
+    Number(loct_longtude_two.value)
+  );
+}
+
+const cal_distance = document.getElementById("cal_distance");
+const distance_answer = document.getElementById("distance_answer");
+cal_distance.addEventListener("click", calculate_distance);
+
+let travel = []
+
+function calculate_distance(e) {
+  e.preventDefault();
+
+  let allKeys = Array.from(place.list_map.keys());
+  if (allKeys.length < 2) {
+    distance_answer.innerText = "Need two locations to calculate distance.";
+    return;
+  }
+  // for (const [key, value] of place.list_map) {
+  //   console.log(`${key}: ${value}`);
+  // }  
+
+
+  let lastTwoKeys = allKeys.slice(-2);
+  let location_two_key = lastTwoKeys[0];
+  let location_one_key = lastTwoKeys[1];
+  console.log(location_one_key);
+  console.log(location_two_key);
+
+
+  let loco_one=place.list_map.get(location_one_key);
+  let loco_two = place.list_map.get(location_two_key);
+  let one_latitude = loco_one.latitude;
+  let one_longitude = loco_one.longitude;
+  let two_latitude = loco_two.latitude;
+  let two_longitude = loco_two.longitude;
+  let t_distance = haversineDistance(one_latitude, one_longitude, two_latitude, two_longitude, "km");
+  let avg_speed = 30;
+  let time_travel_hour = t_distance / avg_speed;
+  let time_travel_minute = Math.round(time_travel_hour * 60);
+  travel.push(time_travel_minute);
+  console.log(travel);
+  distance_answer.innerHTML = `<div>total distance: ${t_distance.toFixed(0)} km</div>
+                                <div>time traveling: ${time_travel_minute} minutes </div>`;
+
+}
 
 
 const form_one = document.getElementById("first_form");
@@ -79,6 +155,13 @@ reset_one.addEventListener("click", () => {
     plan.remove(action);
 })
 
+// const distKm  = haversineDistance(9.03, 38.74, 9.00, 38.76, 'km');
+// const distM   = haversineDistance(9.03, 38.74, 9.00, 38.76, 'm');
+// const distMi  = haversineDistance(9.03, 38.74, 9.00, 38.76, 'mi');
+
+// console.log(`Distance ≈ ${distKm.toFixed(2)} km`);
+// console.log(`Distance ≈ ${distM.toFixed(0)} m`);
+// console.log(`Distance ≈ ${distMi.toFixed(2)} mi`);
 
 
 check_one.addEventListener("change", () => {
@@ -191,9 +274,37 @@ check_four.addEventListener("change", () => {
   plan.remove(action);
 });
 
+const todo_time = document.getElementById("todo_time");
+let schedule_time = [];
+
+function sum_schedule_time(e) {
+  e.preventDefault();
+  let sum=0
+  for (const value of plan.list_map.values()) {
+    sum += Number(value);
+  } 
+
+  schedule_time.push(sum);
+  todo_time.innerHTML=`<div>time needed to finish schdule ${sum}</div> `
+  
+}
+
+
+
+
+const to_do_time = document.getElementById("to_do_time");
+to_do_time.addEventListener("click", sum_schedule_time);
+
+
+
+
+
+
 
 const rain_form = document.getElementById("rain_form");
 let store = document.getElementById("rain_time");
+
+let rain = [];
 
 function get_weather(e) {
   e.preventDefault();
@@ -205,29 +316,33 @@ function get_weather(e) {
   )
     .then((response) => response.json())
     .then((data) => {
-
       let rain_status = {
         clouds_all: data.clouds.all,
         humidity: data.main.humidity,
         pressure: data.main.pressure,
+        wind_speed: data.wind.speed,
+        temp_max: data.main.temp_max,
+        temp: data.main.temp,
       };
-      
+
       const predictor = new RainPredictor();
       const p1 = predictor.update(rain_status);
-      const { confidence } = p1;
+      console.log(p1);
       console.log(predictor.getMedianETA());
-      const time_to_rain = predictor.getMedianETA();
-
-
-    store.innerHTML = `<h5>approximate time to rain in : ${time_to_rain} minutes</h5>
+      let time_to_rain = predictor.getMedianETA();
+      rain.push(time_to_rain);
+      store.innerHTML = `<h5>approximate time to rain in : ${time_to_rain} minutes</h5>
                    <h5>description: ${data.weather[0].description}</h5>`;
       console.log(rain_status);
+      console.log(rain);
     })
     .catch((err) => {
       store.innerHTML = "<h5>could't find the  city,try again</h5>";
       console.log(err);
     });
 }
+
+
 
 rain_form.addEventListener("submit", get_weather);
 
@@ -252,3 +367,9 @@ function show_rain_home(e) {
 }
 
 return_rain_home.addEventListener("click", show_rain_home);
+
+
+
+
+
+

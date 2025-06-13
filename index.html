@@ -136,6 +136,8 @@
               </div>
               <div class="list_home_wrapper text-center">
                 <button id="list_button">return home</button>
+                <button id="to_do_time">complete</button>
+                <div id="todo_time"></div>
               </div>
 
         </div>
@@ -146,8 +148,106 @@
                 <div class="location_title text-center"><h2>geo location</h2></div>
                 <div class="location_motto text-center pt-5">whereever you wanna go we go with you</div>
                 <div class="location_button_wrapper text-center pt-5">
-                    <button class="location_button">set locations</button>
+                    <button class="location_button" id="loc_location_bty">set locations</button>
                 </div>
+            </div>
+        </div>
+
+        <div class="lo_list_wrapper text-center position-relative top-50 start-50 translate-middle d-none ">
+            <div class="list_head">
+                <h3 class="list_title">Add your locations</h3>
+            </div>
+
+            <div class="list_form ">
+                <!-- Form #1 -->
+                <div class="action_block">
+                  <form class="form-group" id="lo_first_form">
+                    <input type="checkbox" id="lo_check_one" class="neon-checkbox" />
+                    <div class="floating-input">
+
+                      <input type="text" name="action_one" id="space_one" required  />
+                      <label>home</label>
+
+                    </div>
+                    <div class="floating-input">
+
+                      <input type="number" name="time_one" id="loct_latitude_one" placeholder="latitude" required />
+
+                      <input type="number" name="time_one" id="loct_longtude_one" placeholder="longtitude"  required />
+                      <!-- <label>coordinates</label> -->
+                    </div>
+                    <button type="submit" id="loct_submit_one" class="neon-btn">Add</button>
+                    <input type="reset" id="loct_reset_one" class="neon-btn outline" />
+                  </form>
+                </div>
+              
+                <!-- Form #2 -->
+                <div class="action_block">
+                  <form class="form-group" id="lo_second_form">
+
+                    <input type="checkbox" id="check_two" class="neon-checkbox" />
+
+                    <div class="floating-input">
+
+                      <input type="text" name="action_two" id="space_two" required />
+                      <label>office</label>
+
+                    </div>
+                    <div class="floating-input">
+
+                      <input type="number" name="time_two" id="loct_latitude_two" placeholder="latitude" />
+
+                      <input type="number" name="time_one" id="loct_longtude_two" placeholder="longtitude"  required />
+
+                      <!-- <label>locations</label> -->
+                    </div>
+                    <button type="submit" id="loct_submit_two" class="neon-btn">Add</button>
+                    <input type="reset" id="loct_reset_two" class="neon-btn outline" />
+                  </form>
+                </div>
+              
+                <!-- Form #3 -->
+                <!-- <div class="action_block">
+                  <form class="form-group"  id="third_form">
+                    <input type="checkbox" id="check_three" class="neon-checkbox" />
+                    <div class="floating-input">
+                      <input type="text" name="action_three" id="action_three" required />
+                      <label>school</label>
+                    </div>
+                    <div class="floating-input">
+                      <input type="number" id="time_three" name="time_three" required />
+                      <label>location</label>
+                    </div>
+                    <button type="submit" id="submit_three" class="neon-btn">Add</button>
+                    <input type="reset" id="reset_three" class="neon-btn outline" />
+                  </form>
+                </div> -->
+              
+                <!-- Form #4 -->
+                <!-- <div class="action_block">
+                  <form class="form-group" id="fourth_form">
+                    <input type="checkbox" id="check_four" class="neon-checkbox" />
+                    <div class="floating-input">
+                      <input type="text" name="action_four" id="action_four" required />
+                      <label>other places</label>
+                    </div>
+                    <div class="floating-input">
+                      <input type="number" name="time_four" id="time_four" required />
+                      <label>location</label>
+                    </div>
+                    <button type="submit" id="submit_four" class="neon-btn">Add</button>
+                    <input type="reset" id="reset_four" class="neon-btn outline" />
+                  </form>
+                </div> -->
+              </div>
+            <div class="d-flex w-50 ">
+              <div class="geo_loc_bty text-center">
+                <button id="lo_list_button">return home</button>
+              </div>
+              <div class="geo_loc_bty  text-center flex-column">
+                <button id="cal_distance">calculate distance</button>
+              </div>
+              <div id="distance_answer"></div>
             </div>
         </div>
     </section>
@@ -177,63 +277,3 @@
 </html>
 
 
-
-
-  <!-- <div class="bottom_lineup container-fluid">
-            <div class="logo_box row">
-                <div class="my_site col-9">
-                    <h5 class="site">PX</h5>
-                </div>
-                <div class="socials col-3 row">
-                    <div class="facebook col-3">
-                        <img src="./resource/socials_logo/vecteezy_icon-media-social-facebook_22257063.jpg" alt="facebook logo">
-                    </div>
-                    <div class="linkdin col-3">
-                        <img src="./resource/socials_logo/vecteezy_linkedin-social-media-icon-symbol-logo-vector-illustration_8385835.jpg" alt="linkdin llogo">
-                    </div>
-                    <div class="instagram col-3">
-                        <img src="./resource/socials_logo/vecteezy_instagram-social-media-icon-symbol-element-vector-illustration_8385736.jpg" alt="instagram logo">
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-
-            <!-- <div class="list_form text-center">
-                <div class="first_action">
-                    <form id="first_form" action="#" method="post">
-                        <input type="checkbox" id="check_one" >
-                        <input type="text" id="action_one"  placeholder="task">
-                        <input type="number" id="time_one" placeholder="time alloted">
-                        <button type="submit" id="submit_one">add</button>
-                        <input type="reset" id="reset_one">
-                    </form>
-                </div>
-                <div class="second_action">
-                    <form id="second_form" action="#" method="post">
-                        <input type="checkbox" id="check_two" >
-                        <input type="text" id="action_two"  placeholder="task">
-                        <input type="number" id="time_two" placeholder="time alloted">
-                        <button type="submit" id="submit_two">add</button>
-                        <input type="reset" id="reset_two">
-                    </form>
-                </div>
-                <div class="third_action">
-                    <form id="third_form" action="#" method="post">
-                        <input type="checkbox" id="check_three" >
-                        <input type="text" id="action_three"  placeholder="task">
-                        <input type="number" id="time_three" placeholder="time alloted">
-                        <button type="submit" id="submit_three">add</button>
-                        <input type="reset" id="reset_three">
-                    </form>
-                </div>
-                <div class="fourth_action">
-                    <form id="fourth_form" action="#" method="post">
-                        <input type="checkbox" id="check_four" >
-                        <input type="text" id="action_four"  placeholder="task">
-                        <input type="number" id="time_four" placeholder="time alloted">
-                        <button type="submit" id="submit_four">add</button>
-                        <input type="reset" id="reset_four">
-                    </form>
-                </div>
-            </div> -->

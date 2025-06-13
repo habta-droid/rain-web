@@ -98,5 +98,52 @@ class Schedule {
   }
 }
 
+class Location {
+  constructor(place, latitude, longitude) {
+    this.list_map = new Map();
+    this.list_map.set(place, { latitude: "", longitude: "" });
+  }
 
-export { Schedule, RainPredictor };
+  add_place(place, latitude, longitude) {
+    this.list_map.set(place, { latitude, longitude });
+  }
+
+  remove_place(place) {
+    this.list_map.delete(place);
+  }
+
+  view_place() {
+    for (const [key, value] of this.list_map) {
+      console.log(`${key}: ${value}`);
+    }
+  }
+}
+
+export function haversineDistance(lat1, lon1, lat2, lon2, unit = "km") {
+  const toRad = (deg) => (deg * Math.PI) / 180;
+
+  const R = 6371; // Earth's radius in kilometers
+  const φ1 = toRad(lat1);
+  const φ2 = toRad(lat2);
+  const Δφ = toRad(lat2 - lat1);
+  const Δλ = toRad(lon2 - lon1);
+
+  const a =
+    Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+    Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  let d = R * c; // distance in kilometers
+
+  if (unit === "m") d *= 1000; // meters
+  else if (unit === "mi") d *= 0.621371; // miles
+
+  return d;
+}
+
+
+export { Schedule, RainPredictor, Location };
+
+
+
+

@@ -1,250 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Futuristic Rain Status</title>
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* --- [ 1. The Setup & Futuristic Theme ] --- */
-        :root {
-            --primary-color: #00f2ea; /* Neon Cyan/Teal */
-            --secondary-color: #ff00c1; /* Neon Magenta */
-            --bg-color-dark: #0f001a;   /* Deep Space Purple */
-            --text-color: #f0f0f0;
-            --glass-bg: rgba(26, 8, 43, 0.4); /* Semi-transparent glass */
-            --glow-shadow: 0 0 15px rgba(0, 242, 234, 0.5), 0 0 30px rgba(0, 242, 234, 0.3);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Glass-Morphic Icon Grid</title>
+  <style>
+    /* === VARIABLES === */
+    :root {
+      --cell-size: 96px;
+      --cell-radius: 16px;
+      --cell-bg: rgba(255, 255, 255, 0.05);
+      --cell-blur: 12px;
+      --gap: 16px;
+      --icon-size: 40px;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    /* === GRID LAYOUT === */
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #0a0a0f;
+      font-family: sans-serif;
+    }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color-dark);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden; /* Hide scrollbars, let the content be the focus */
-            position: relative; /* For pseudo-elements */
-        }
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(3, var(--cell-size));
+      gap: var(--gap);
+      padding: var(--gap);
+    }
 
-        /* --- [ 2. The Animated Background ] --- */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-color), var(--bg-color-dark), var(--secondary-color));
-            opacity: 0.15;
-            animation: background-pan 25s linear infinite;
-            z-index: -1;
-        }
+    /* === CARDS === */
+    .icon-cell {
+      position: relative;
+      width: var(--cell-size);
+      height: var(--cell-size);
+      border-radius: var(--cell-radius);
+      background: var(--cell-bg);
+      backdrop-filter: blur(var(--cell-blur));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
 
-        @keyframes background-pan {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
-        }
+    /* colored glow */
+    .icon-cell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(
+        circle at center,
+        var(--color) 0%,
+        transparent 60%
+      );
+      opacity: 0.4;
+      pointer-events: none;
+    }
 
-        /* --- [ 3. Main Container & Entry Animation ] --- */
-        .rain_status {
-            position: relative;
-            width: 100%;
-            max-width: 450px;
-        }
+    /* icon styling */
+    .icon-cell .icon {
+      position: relative;
+      width: var(--icon-size);
+      height: var(--icon-size);
+      fill: var(--color);
+      filter: drop-shadow(0 0 12px var(--color));
+    }
 
-        .slide {
-            animation: slide-in 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-            opacity: 0;
-        }
-
-        @keyframes slide-in {
-            from {
-                opacity: 0;
-                transform: translateY(50px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* --- [ 4. The Glassmorphism Card Style ] --- */
-        .rain_box, #rain_form form {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px); /* Safari support */
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 0 0 2px rgba(255,255,255,0.05);
-            transition: all 0.3s ease;
-        }
-        
-        /* Elements to show/hide */
-        .d-none { display: none; }
-        .d-block { display: block; }
-        
-        /* --- [ 5. Modern Typography & Animated Text ] --- */
-        .rain_title h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--primary-color);
-            text-shadow: 0 0 10px var(--primary-color);
-            animation: text-flicker 4s linear infinite;
-        }
-
-        @keyframes text-flicker {
-            0%, 18%, 22%, 25%, 53%, 57%, 100% {
-                text-shadow:
-                    0 0 4px var(--primary-color),
-                    0 0 10px var(--primary-color),
-                    0 0 20px var(--primary-color),
-                    0 0 40px var(--primary-color);
-                opacity: 1;
-            }
-            20%, 24%, 55% { text-shadow: none; opacity: 0.7; }
-        }
-
-        .rain_motto {
-            font-size: 1.1rem;
-            opacity: 0.8;
-            font-weight: 300;
-        }
-
-        .text-center { text-align: center; }
-        .pt-5 { padding-top: 3rem; } /* Helper class */
-
-        /* --- [ 6. Futuristic Buttons & Forms ] --- */
-        .rain_button, #rain_form button {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: var(--bg-color-dark);
-            border: none;
-            border-radius: 50px;
-            padding: 15px 40px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--glow-shadow);
-        }
-
-        .rain_button:hover, #rain_form button:hover {
-            transform: scale(1.05) translateY(-2px);
-            box-shadow: 0 0 25px rgba(0, 242, 234, 0.8), 0 0 50px rgba(255, 0, 193, 0.5);
-        }
-
-        label[for="user_location"] {
-            display: block;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            opacity: 0.7;
-        }
-
-        #user_location {
-            background: transparent;
-            border: none;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-            color: var(--text-color);
-            font-size: 1.2rem;
-            padding: 10px 5px;
-            width: 80%;
-            text-align: center;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        #user_location:focus {
-            border-bottom-color: var(--primary-color);
-        }
-
-        hr {
-            border: none;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--primary-color), transparent);
-            margin: 30px auto;
-            width: 80%;
-        }
-
-        #rain_time {
-            margin-top: 30px;
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            text-shadow: 0 0 5px var(--primary-color);
-            min-height: 30px; /* Reserve space */
-        }
-    </style> -->
+    /* color variants */
+    .blue    { --color: #3A8DFF; }  /* figma blue   */
+    .yellow  { --color: #FFC700; }  /* gold         */
+    .green   { --color: #1DD47B; }  /* minty green  */
+    .purple  { --color: #A05AFF; }  /* heart purple */
+    .pink    { --color: #FF3A55; }  /* pink network */
+    .orange  { --color: #FF7F36; }  /* comb orange  */
+    .teal    { --color: #2CD9C5; }  /* stack teal   */
+    .cyan    { --color: #4589FF; }  /* search blue  */
+    .magenta { --color: #D71AFF; }  /* terminal pink*/
+  </style>
 </head>
 <body>
+  <div class="icon-grid">
+    <div class="icon-cell blue">
+      <!-- Swap in your Figma SVG here -->
+      <svg class="icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/>
+      </svg>
+    </div>
+    <div class="icon-cell yellow">
+      <svg class="icon" viewBox="0 0 24 24">
+        <rect x="4" y="4" width="16" height="16" rx="2"/>
+      </svg>
+    </div>
+    <div class="icon-cell green">
+      <svg class="icon" viewBox="0 0 24 24">
+        <path d="M6 12h12"/>
+        <path d="M12 6v12"/>
+      </svg>
+    </div>
 
-    <section class="rain_status slide">
-        <!-- Screen 1: Welcome -->
-        <div class="rain_wrapper"> <!-- d-none removed initially to be handled by JS -->
-            <div class="rain_box">
-                <div class="rain_title text-center"><h2>rain_status</h2></div>
-                <div class="rain_motto text-center pt-5">predicts the most likely time it will rain</div>
-                <div class="rain_button_wrapper text-center pt-5">
-                    <button id="show-form-btn" class="rain_button">See</button>
-                </div>
-            </div>
-        </div>
-        <!-- Screen 2: Form -->
-        <div id="rain_form" class="d-none"> <!-- Initially hidden -->
-            <form method="post" class="text-center pt-5">
-                <label for="user_location">Enter your city</label><br>
-                <input type="text" name="user_location" id="user_location"><hr>
-                <button type="submit">Get Rain Time</button>
-                <div id="rain_time"><!-- Example: Likely rain around 4:00 PM --></div>
-            </form>
-        </div>
-    </section>
+    <div class="icon-cell purple">
+      <svg class="icon" viewBox="0 0 24 24">
+        <path d="M12 21s-7-4.35-7-10a5 5 0 0 1 10 0c0 5.65-7 10-7 10z"/>
+      </svg>
+    </div>
+    <div class="icon-cell pink">
+      <svg class="icon" viewBox="0 0 24 24">
+        <circle cx="8" cy="8" r="2"/>
+        <circle cx="16" cy="8" r="2"/>
+        <circle cx="8" cy="16" r="2"/>
+        <circle cx="16" cy="16" r="2"/>
+      </svg>
+    </div>
+    <div class="icon-cell orange">
+      <svg class="icon" viewBox="0 0 24 24">
+        <path d="M4 6h16M4 12h12M4 18h8"/>
+      </svg>
+    </div>
 
-    <script>
-        // Simple JavaScript to handle the transition between the two screens
-        const welcomeScreen = document.querySelector('.rain_wrapper');
-        const formScreen = document.getElementById('rain_form');
-        const showFormBtn = document.getElementById('show-form-btn');
-        const form = document.querySelector('#rain_form form');
+    <div class="icon-cell teal">
+      <svg class="icon" viewBox="0 0 24 24">
+        <path d="M4 4h16v16H4z"/>
+        <path d="M4 10h16"/>
+        <path d="M10 4v16"/>
+      </svg>
+    </div>
+    <div class="icon-cell cyan">
+      <svg class="icon" viewBox="0 0 24 24">
+        <circle cx="10" cy="10" r="6"/>
+        <line x1="15" y1="15" x2="20" y2="20"/>
+      </svg>
+    </div>
+    <div class="icon-cell magenta">
+      <svg class="icon" viewBox="0 0 24 24">
+        <path d="M5 7l7 5-7 5V7z"/>
+        <path d="M19 7v10"/>
+      </svg>
+    </div>
+  </div>
 
-        showFormBtn.addEventListener('click', () => {
-            welcomeScreen.classList.add('d-none'); // Hide welcome screen
-            formScreen.classList.remove('d-none'); // Show form screen
-            formScreen.classList.add('d-block');
-        });
-        
-        // Example: Handle form submission to show a result
-        form.addEventListener('submit', (e) => {
-            e.preventDefault(); // Prevent actual form submission
-            const rainTimeDiv = document.getElementById('rain_time');
-            rainTimeDiv.innerText = 'Calculating...';
 
-            // Simulate an API call
-            setTimeout(() => {
-                const city = document.getElementById('user_location').value;
-                if(city){
-                   rainTimeDiv.innerText = `Forecast for ${city}: Rain likely at 8:30 PM`;
-                } else {
-                   rainTimeDiv.innerText = 'Please enter a city.'; 
-                }
-            }, 1500);
-        });
-    </script>
-
+  <script src="test.js"></script>
 </body>
 </html>
