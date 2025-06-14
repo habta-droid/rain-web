@@ -263,6 +263,7 @@ form_four.addEventListener("submit", (e) => {
 
 });
 
+
 reset_four.addEventListener("click", () => {
   const action = action_four.value.trim();
   plan.remove(action);
@@ -285,22 +286,16 @@ function sum_schedule_time(e) {
   } 
 
   schedule_time.push(sum);
-  todo_time.innerHTML=`<div>time needed to finish schdule ${sum}</div> `
+  todo_time.innerHTML=`<div>Time Needed ${sum} minutes</div> `
   
 }
-
-
 
 
 const to_do_time = document.getElementById("to_do_time");
 to_do_time.addEventListener("click", sum_schedule_time);
 
 
-
-
-
-
-
+// rain form
 const rain_form = document.getElementById("rain_form");
 let store = document.getElementById("rain_time");
 
@@ -368,8 +363,87 @@ function show_rain_home(e) {
 
 return_rain_home.addEventListener("click", show_rain_home);
 
+const explain_box = document.querySelector(".explain_box");
+const summerize_button = document.getElementById("summerize_button");
+const end_result = document.getElementById("end_result");
 
 
+function summerize(e) {
 
+  e.preventDefault();
+  end_result.classList.remove("d-none");
+  explain_box.classList.add("d-none");
 
+  // Corrected validation logic
+  if (rain.length === 0 || travel.length === 0 || plan.list_map.size === 0 || place.list_map.size < 2) {
+    end_result.innerHTML = `<h3>there are forms that have not been filled.please fill out all requirments</h3>`;
+    return; // Stop further execution if forms are not filled
+  }
+
+  let time_schedule_arr = [];
+  for (const value of plan.list_map.values()) {
+    time_schedule_arr.push(value);
+  }
+  let action_schedule_arr = [];
+  for (const key of plan.list_map.keys()) {
+    action_schedule_arr.push(key);
+  }
+  let spot_picked = [];
+  for (const key of place.list_map.keys()) {
+    spot_picked.push(key);
+  }
+  let true_num_Array = time_schedule_arr.map(Number);
+  let t_length = true_num_Array.length - 1;
+  let time_sum = [];
+  for (let i = t_length; i >= 0; i--) {
+    let partialSum = true_num_Array
+      .slice(0, i + 1)
+      .reduce((sum, current) => sum + current, 0);
+    time_sum.push(partialSum);
+    
+    console.log(partialSum);
+  }
+  console.log("answer", time_sum);
+  console.log(travel[0]);
+  console.log(rain[0]);
+
+  
+  if (travel[0] > rain[0]) {
+    if (spot_picked.length >= 2) {
+      end_result.innerHTML = `you don't have enough time to get to ${spot_picked[1]} ,pick umbrella and head out now`;
+    } else {
+      end_result.innerHTML = `you don't have enough time to get to destinations, pick umbrella and head out now.`;
+    
+    }
+    if ((travel[0] + true_num_Array[0]) <= rain[0]) {
+      end_result.innerHTML = `relax,you have got enough time to do all your chores`;
+    } else if (travel[0] + true_num_Array[1] <= rain[0]) {
+      end_result.innerHTML = `you have only got time to do 3 actions. ${action_schedule_arr[0]},${action_schedule_arr[1]} and ${action_schedule_arr[2]}`;
+    } else if (travel[0] + true_num_Array[2] <= rain[0]) {
+      end_result.innerHTML = `you have only got time to do 2 things. ${action_schedule_arr[0]} and ${action_schedule_arr[1]}`;
+    } else if (travel[0] + true_num_Array[3] <= rain[0]) {
+      end_result.innerHTML = `you have only got time to do 1 thing. ${action_schedule_arr[0]}`;
+    }
+    else {
+      end_result.innerHTML = `you have barely enough time to get to ${spot_picked[1]}`;
+    }
+
+  
+  }
+}
+
+summerize_button.addEventListener("click", summerize)
+
+const getStartedBtn = document.querySelector('.header_button');
+const headerSlide = document.querySelector('header.top.slide');
+const rainSlide = document.querySelector('section.rain_status.slide');
+
+getStartedBtn.addEventListener('click', () => {
+  headerSlide.classList.add('d-none');
+  rainSlide.classList.remove('d-none');
+  setTimeout(() => {
+    headerSlide.classList.remove("d-none");
+  }, 1000);
+
+});
 

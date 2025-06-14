@@ -41,11 +41,11 @@ align-items: center;
 }
 /* Your main wrapper styling - ensure it fits within a slide if intended */
 
-.top{
+/* .top{
     background-image: url(../resource/main/space.avif);
     background-size: 100% 100%;
-    /* padding:50px; */
-}
+} */
+
 .text{
   background: #F0F2F0;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to left, #000C40, #F0F2F0);  /* Chrome 10-25, Safari 5.1-6 */
@@ -143,6 +143,25 @@ align-items: center;
     box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
   }
 
+#summerize_wrapper{
+  width:400px;
+  height: 150px;
+  margin:0 auto;
+  padding: 20px 50px 1px;
+  
+}
+
+#summerize_button{
+  width:100%;
+  height: 100%;
+  font-size: 20px;
+  font-family: "Tektur", sans-serif;  
+  color: rgb(239, 230, 236);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
+  background-color: #101403;
+}
+
 .geo_loc_bty{
   width:200px;
   font-size: 20px;
@@ -153,12 +172,19 @@ align-items: center;
 } 
 
 
-  .header_button_wrapper,.list_home_wrapper,.geo_loc_bty{
+  .header_button_wrapper,.geo_loc_bty{
     display: flex;
     justify-content: center;
     width: 150px;
     margin:0 auto;
   }
+  .sch{
+    display: flex;
+    justify-content: center;
+    margin:0 auto;
+
+  }
+
   .task_wrapper,.rain_wrapper,.location_wrapper {
     /* width: 50%;
     height: 300px;
@@ -184,7 +210,7 @@ align-items: center;
     box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
 
   }
-  .rain_status,.scenario_three{
+  .rain_status,.scenario_three,.location{
     background: #005C97;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to bottom, #363795, #005C97);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #363795, #005C97); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -199,17 +225,18 @@ background: -webkit-linear-gradient(to bottom, #71B280, #134E5E);  /* Chrome 10-
 background: linear-gradient(to bottom, #71B280, #134E5E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
-.location,.scenario_two,.task{
+.scenario_two,.task,.top{
   background: #780206;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to bottom, #061161, #780206);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to bottom, #061161, #780206); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
 
+
 .normal_text{
-    padding: 5% 10% 2%;
+    padding: 5% 1% 2%;
     width:90%;
-    color: whitesmoke
+    color: rgb(5, 80, 103)
   } 
 /* .border{
   border: 4px solid black;
@@ -273,7 +300,7 @@ body.dark-mode {
 .action_block {
   margin-bottom: 1.5rem;
 }
-.form-group {
+.form-group,#rain_form {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -387,7 +414,7 @@ body.dark-mode {
   overflow: hidden; /* for the slide-in effect */
 }
 
-.list_title,.task_schedule {
+.list_title,.task_schedule,.city_shelf,.rain_title {
   font-family: 'Segoe UI', sans-serif;
   font-size: 2.5rem;
   text-transform: uppercase;
@@ -401,7 +428,7 @@ body.dark-mode {
   padding-bottom: 0.5rem;
 }
 
-.list_title::after,.task_schedule::after {
+.list_title::after,.task_schedule::after,.city_shelf::after,.rain_title::after  {
   content: '';
   position: absolute;
   left: 50%;
@@ -441,4 +468,18 @@ body.dark-mode {
   position: relative;
 top: 50%; left: 50%;
 transform: translate(-50%,-60%);
+}
+
+#todo_time,#distance_answer{
+  width: 300px;
+  background: linear-gradient(90deg, #00e5ff, #d100c4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 25px;
+}
+.loct_dis{
+
+}
+#distance_answer{
+  padding-right: 70px;
 }

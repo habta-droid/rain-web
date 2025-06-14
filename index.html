@@ -36,13 +36,13 @@
         </div>
         <div class="rain_time_wrapper d-none" >
             <form  id="rain_form" method="post" class="text-center pt-5">
-                <label for="user_location">enter your city</label><br>
-                <input type="text" name="user_location" id="user_location">
-                <button type="submit">get rain time</button><hr>
+                <label for="user_location" class="city_shelf">enter your city</label><br>
+                <input type="text" name="user_location" id="user_location" class="floating-input">
+                <button type="submit" class="neon-btn ">get rain time</button><hr>
                 <div id="rain_time"></div>
             </form>
             <div class="text-center pt-4" >
-                <button class="return_rain_home">return home</button>
+                <button class="return_rain_home neon-btn ">return home</button>
             </div>
         </div>
 
@@ -134,11 +134,13 @@
                   </form>
                 </div>
               </div>
-              <div class="list_home_wrapper text-center">
+              <div class="sch d-flex">
+              <div class="list_home_wrapper">
                 <button id="list_button">return home</button>
                 <button id="to_do_time">complete</button>
-                <div id="todo_time"></div>
               </div>
+              <div id="todo_time"></div>
+            </div>
 
         </div>
     </section>
@@ -240,15 +242,16 @@
                   </form>
                 </div> -->
               </div>
-            <div class="d-flex w-50 ">
+            <div class= "loct_dis d-flex ">
               <div class="geo_loc_bty text-center">
                 <button id="lo_list_button">return home</button>
               </div>
-              <div class="geo_loc_bty  text-center flex-column">
+              <div class="geo_loc_bty flex-column">
                 <button id="cal_distance">calculate distance</button>
               </div>
               <div id="distance_answer"></div>
             </div>
+            
         </div>
     </section>
     <footer class="text slide">
@@ -256,9 +259,13 @@
         <div class="main_title_wrapper">
             <h2 class="text_title text-center p-4">never let weather disrupt your plans</h2>
         </div>
+        <div id="summerize_wrapper">
+          <button id="summerize_button">summerize</button>
+        </div><br>
+        <div class="normal_text d-none fs-3 text-center mb-5" id="end_result"></div>
         <div class="explain_box">
-            <div class="normal_text fs-sm-2 fs-lg-5">by incorporating these three tool I have created a website. <br>
-            to start: Just Add tasks, set how long they take, pin your home and office, then let RainScope tell you which chores you can finish under sunshine or when to grab an umbrella. Stay one step ahead of the weather and get things done, rain or shine.</div>
+            <div class="normal_text fs-sm-3 mx-4 fs-lg-5">by incorporating these three tool I have created a website.
+            to start:<br> 1.Just Add tasks<br> 2.set how long they take<br> 3.pin your home and office<br> then let RainScope tell you which chores you can finish under sunshine or when to grab an umbrella.<br> Stay one step ahead of the weather and get things done, rain or shine.</div>
         </div>
         
         <div class="scenario row fs-1  justify-content-center">
