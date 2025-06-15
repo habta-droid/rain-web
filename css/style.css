@@ -3,17 +3,16 @@
 *::after {
 box-sizing: border-box;
 }
-/* Basic Reset */
+
 body, h1, h2, h3, h4, h5, h6, p, ul, li {
 margin: 0;
 padding: 0;
 }
 img {
 max-width: 100%;
-/* display: block;  */
-/* Prevents extra space below inline images */
+
 }
-/* Full Height and Scroll Snapping */
+
 html, body {
 height: 100%;
 width:100%;
@@ -31,25 +30,15 @@ width:100%;
 overflow: hidden;
 scroll-snap-align: start;
 scroll-snap-stop: always;
-/* Add your slide content styling here /
-display: flex; / Example for centering content */
 flex-direction: column;
 justify-content: center;
 align-items: center;
-/* font-size: 3rem; */
-/* color: black; */
 }
-/* Your main wrapper styling - ensure it fits within a slide if intended */
-
-/* .top{
-    background-image: url(../resource/main/space.avif);
-    background-size: 100% 100%;
-} */
 
 .text{
-  background: #F0F2F0;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #000C40, #F0F2F0);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #000C40, #F0F2F0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #F0F2F0;  
+  background: -webkit-linear-gradient(to left, #000C40, #F0F2F0);  
+  background: linear-gradient(to left, #000C40, #F0F2F0); 
   
 }
 .logo_box{
@@ -80,7 +69,6 @@ align-items: center;
   font-optical-sizing: auto;
   font-weight: 900;
   font-style: normal;
-  /* font-variation-settings:"wdth" 100; */
   font-size: 100px;
 }
 .name{
@@ -91,17 +79,6 @@ align-items: center;
   color: transparent;
 }
 
-/* add font style to the main motto */
-
-
-/* .rain_motto,.task_motto,.location_motto {
-    font-family: "Oxanium", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 50px;
-  } */
-
   .rain_motto,.task_motto,.location_motto{
     font-family: "Edu SA Hand", cursive;
     font-optical-sizing: auto;
@@ -109,9 +86,7 @@ align-items: center;
     font-style: normal;
     font-size: 40px;
     color:whitesmoke;
-    /* background-image: linear-gradient(to top, #dbdcd7 0%, #dddcd7 24%, #e2c9cc 30%, #e7627d 46%, #b8235a 59%, #801357 71%, #3d1635 84%, #1c1a27 100%); */
   }
-
 
   .scenario{
     font-family: "Edu SA Hand", cursive;
@@ -186,12 +161,6 @@ align-items: center;
   }
 
   .task_wrapper,.rain_wrapper,.location_wrapper {
-    /* width: 50%;
-    height: 300px;
-    margin: 0 auto;
-    background-color: red;
-    position: relative;
-    top: 70px; */
     margin: 0 auto;
     position: relative;
     top: 80px;
@@ -204,32 +173,27 @@ align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* padding: 40px; */
     color: #342323;
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
 
   }
   .rain_status,.scenario_three,.location{
-    background: #005C97;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #363795, #005C97);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, #363795, #005C97); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
-    
-     
+    background: #005C97;  
+    background: -webkit-linear-gradient(to bottom, #363795, #005C97);  
+    background: linear-gradient(to bottom, #363795, #005C97); 
   }
   
 .scenario_one{
-  background: #134E5E;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to bottom, #71B280, #134E5E);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to bottom, #71B280, #134E5E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #134E5E;  
+background: -webkit-linear-gradient(to bottom, #71B280, #134E5E);  
+background: linear-gradient(to bottom, #71B280, #134E5E); 
 
 }
 .scenario_two,.task,.top{
-  background: #780206;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to bottom, #061161, #780206);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to bottom, #061161, #780206); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background: #780206; 
+background: -webkit-linear-gradient(to bottom, #061161, #780206);  
+background: linear-gradient(to bottom, #061161, #780206); 
 }
 
 
@@ -238,27 +202,19 @@ background: linear-gradient(to bottom, #061161, #780206); /* W3C, IE 10+/ Edge, 
     width:90%;
     color: rgb(5, 80, 103)
   } 
-/* .border{
-  border: 4px solid black;
-  padding: 20px;
-  margin-top:50px;
-} */
 .socials img{
   width: 40px;
 }
 
-
-/* Container styling */
 .first_action {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;               /* full viewport height */
+  height: 100vh;             
   background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
   font-family: 'Segoe UI', Tahoma, sans-serif;
 }
 
-/* Form glassmorphism base */
 :root {
   --bg: #121217;
   --fg: #e0e0e0;
@@ -274,14 +230,12 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-/* DARK MODE */
 body.dark-mode {
   --bg: #e0e0e0;
   --fg: #121217;
   --neon: #d100c4;
 }
 
-/* Wrapper centering */
 .list_wrapper {
   position: absolute;
   top: 50%; left: 50%;
@@ -290,13 +244,11 @@ body.dark-mode {
   text-align: center;
 }
 
-/* Headline */
 .list_title {
   margin-bottom: 1rem;
   font-size: 2rem;
 }
 
-/* Glassmorphic form blocks */
 .action_block {
   margin-bottom: 1.5rem;
 }
@@ -311,7 +263,6 @@ body.dark-mode {
   box-shadow: 0 8px 32px rgba(0,0,0,0.5);
 }
 
-/* Floating Labels */
 .floating-input {
   position: relative;
   flex: 1;
@@ -345,7 +296,6 @@ body.dark-mode {
   color: var(--neon);
 }
 
-/* Neon Buttons */
 .neon-btn {
   padding: 0.6rem 1rem;
   background: var(--neon);
@@ -359,7 +309,6 @@ body.dark-mode {
   transform: translateY(-2px);
   box-shadow: 0 0 12px var(--neon), 0 0 24px rgba(var(--neon),0.6);
 }
-/* Outline variant for reset */
 .neon-btn.outline {
   background: transparent;
   color: var(--neon);
@@ -370,7 +319,6 @@ body.dark-mode {
   background: rgba(var(--neon),0.1);
 }
 
-/* Neon Checkbox */
 .neon-checkbox {
   -webkit-appearance: none;
   appearance: none;
@@ -394,7 +342,6 @@ body.dark-mode {
   font-size: 16px;
 }
 
-/* Dark-mode toggle button */
 .dark-toggle {
   position: fixed; top: 1rem; right: 1rem;
   background: var(--glass);
@@ -411,7 +358,7 @@ body.dark-mode {
 .list_head,.task_title {
   position: relative;
   margin-bottom: 2rem;
-  overflow: hidden; /* for the slide-in effect */
+  overflow: hidden; 
 }
 
 .list_title,.task_schedule,.city_shelf,.rain_title {
@@ -442,7 +389,6 @@ body.dark-mode {
   box-shadow: 0 0 8px #00e5ff, 0 0 16px rgba(0, 229, 255, 0.6);
 }
 
-/* Slide-in from left & fade */
 @keyframes slideIn {
   to {
     opacity: 1;
@@ -454,7 +400,6 @@ body.dark-mode {
   }
 }
 
-/* Underline growth */
 @keyframes neonLine {
   to {
     width: 60%;
@@ -477,9 +422,21 @@ transform: translate(-50%,-60%);
   -webkit-text-fill-color: transparent;
   font-size: 25px;
 }
-.loct_dis{
 
-}
 #distance_answer{
   padding-right: 70px;
+}
+
+.nav-item{
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(40px);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  color: #342323;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
 }
