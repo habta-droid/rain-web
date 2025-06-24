@@ -57,7 +57,7 @@ align-items: center;
   font-style: normal;
   font-size: 30px;
 }
-.normal_text{
+.normal_text,.final_answer{
   font-family: "Roboto Mono", monospace;
   font-optical-sizing: auto;
   font-weight: 700;
@@ -200,7 +200,7 @@ background: linear-gradient(to bottom, #061161, #780206);
 .normal_text{
     padding: 5% 1% 2%;
     width:90%;
-    color: rgb(5, 80, 103)
+    color: black;
   } 
 .socials img{
   width: 40px;
@@ -430,10 +430,6 @@ transform: translate(-50%,-60%);
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
-}
-
-.nav-bg,.navbar-toggler-icon{
-  color: whitesmoke
 }
 
 

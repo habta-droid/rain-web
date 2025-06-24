@@ -374,10 +374,10 @@ function summerize(e) {
   end_result.classList.remove("d-none");
   explain_box.classList.add("d-none");
 
-  // Corrected validation logic
+ 
   if (rain.length === 0 || travel.length === 0 || plan.list_map.size === 0 || place.list_map.size < 2) {
     end_result.innerHTML = `<h3>there are forms that have not been filled.please fill out all requirments</h3>`;
-    return; // Stop further execution if forms are not filled
+    return; 
   }
 
   let time_schedule_arr = [];
@@ -406,29 +406,26 @@ function summerize(e) {
   console.log("answer", time_sum);
   console.log(travel[0]);
   console.log(rain[0]);
-
+  console.log(spot_picked)
   
   if (travel[0] > rain[0]) {
-    if (spot_picked.length >= 2) {
-      end_result.innerHTML = `you don't have enough time to get to ${spot_picked[1]} ,pick umbrella and head out now`;
+    if (spot_picked.length >= 3) {
+      end_result.innerHTML = `you don't have enough time to get to ${spot_picked[2]} ,pick umbrella and head out now`;
     } else {
       end_result.innerHTML = `you don't have enough time to get to destinations, pick umbrella and head out now.`;
-    
     }
-    if ((travel[0] + true_num_Array[0]) <= rain[0]) {
-      end_result.innerHTML = `relax,you have got enough time to do all your chores`;
-    } else if (travel[0] + true_num_Array[1] <= rain[0]) {
-      end_result.innerHTML = `you have only got time to do 3 actions. ${action_schedule_arr[0]},${action_schedule_arr[1]} and ${action_schedule_arr[2]}`;
-    } else if (travel[0] + true_num_Array[2] <= rain[0]) {
-      end_result.innerHTML = `you have only got time to do 2 things. ${action_schedule_arr[0]} and ${action_schedule_arr[1]}`;
-    } else if (travel[0] + true_num_Array[3] <= rain[0]) {
-      end_result.innerHTML = `you have only got time to do 1 thing. ${action_schedule_arr[0]}`;
-    }
-    else {
-      end_result.innerHTML = `you have barely enough time to get to ${spot_picked[1]}`;
-    }
+  }
 
-  
+  if (travel[0] + time_sum[0] <= rain[0]) {
+    end_result.innerHTML = `relax,you have got enough time to do all your chores`;
+  } else if (travel[0] + time_sum[1] <= rain[0]) {
+    end_result.innerHTML = `you have only got time to do 3 actions. ${action_schedule_arr[0]},${action_schedule_arr[1]} and ${action_schedule_arr[2]}`;
+  } else if (travel[0] + time_sum[2] <= rain[0]) {
+    end_result.innerHTML = `you have only got time to do 2 things. ${action_schedule_arr[0]} and ${action_schedule_arr[1]}`;
+  } else if (travel[0] + time_sum[3] <= rain[0]) {
+    end_result.innerHTML = `you have only got time to do 1 thing. ${action_schedule_arr[0]}`;
+  } else {
+    end_result.innerHTML = `you have barely enough time to get to ${spot_picked[2]}`;
   }
 }
 

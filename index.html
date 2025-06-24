@@ -13,18 +13,18 @@
 <body>
     <header id="top_slide" class="top slide">
       
-        <div class="nav_bar_wrapper ">
+        <div class="nav_bar_wrapper">
           <div class="container-fluid">
           <nav class="navbar navbar-expand-lg fixed-top">
             <button class="navbar-toggler " data-toggle="collapse" data-target=".navbar-collapse" type="button">
               ☰</button>
-              <a href="#top_slide" class="navbar-brand  nav-bg mx-auto"> Scope</a>
+              <a href="#top_slide" class="navbar-brand text-white nav-bg mx-auto"> Scope</a>
             <div class="navbar-collapse collapse">
                   <ul class="navbar-nav nav-justified w-75 mx-auto ml-auto">
-                    <li class="nav-item "><a href="#rainy_slide" class="nav-link js-scroll-trigger nav-bg">Rain status</a></li>
-                    <li class="nav-item "><a href="#schedules_slide" class="nav-link js-scroll-trigger nav-bg">Schedules</a></li>
-                    <li class="nav-item "><a href="#location_slide" class="nav-link js-scroll-trigger nav-bg">Location</a></li>
-                    <li class="nav-item "><a href="#summary_slide" class="nav-link js-scroll-trigger nav-bg">Summary</a></li>
+                    <li class="nav-item "><a href="#rainy_slide" class="nav-link js-scroll-trigger  text-white nav-bg">Rain status</a></li>
+                    <li class="nav-item "><a href="#schedules_slide" class="nav-link js-scroll-trigger text-white nav-bg">Schedules</a></li>
+                    <li class="nav-item "><a href="#location_slide" class="nav-link js-scroll-trigger text-white nav-bg">Location</a></li>
+                    <li class="nav-item "><a href="#summary_slide" class="nav-link js-scroll-trigger text-white nav-bg">Summary</a></li>
                   </ul>
             </div>
           </nav>
@@ -192,9 +192,10 @@
                     </div>
                     <div class="floating-input">
 
-                      <input type="number" name="time_one" id="loct_latitude_one" placeholder="latitude" required />
+                      <input type="number" min="-90" max="90" step="0.001" name="time_one" id="loct_latitude_one" placeholder="latitude" required >
 
-                      <input type="number" name="time_one" id="loct_longtude_one" placeholder="longtitude"  required />
+                      <input type="number" min="-180" max="180" step="0.001" name="time_one" id="loct_longtude_one" placeholder="longtitude" required>
+                      
                     </div>
                     <button type="submit" id="loct_submit_one" class="neon-btn">Add</button>
                     <input type="reset" id="loct_reset_one" class="neon-btn outline" />
@@ -215,9 +216,10 @@
                     </div>
                     <div class="floating-input">
 
-                      <input type="number" name="time_two" id="loct_latitude_two" placeholder="latitude" />
+                      <input type="number" min="-90" max="90" step="0.001" id="loct_latitude_two" placeholder="latitude" required >
 
-                      <input type="number" name="time_one" id="loct_longtude_two" placeholder="longtitude"  required />
+                      <input type="number" min="-180" max="180" step="0.001" id="loct_longtude_two" placeholder="longtitude" required >
+
                     </div>
                     <button type="submit" id="loct_submit_two" class="neon-btn">Add</button>
                     <input type="reset" id="loct_reset_two" class="neon-btn outline" />
@@ -244,10 +246,10 @@
         <div id="summerize_wrapper">
           <button id="summerize_button">summerize</button>
         </div><br>
-        <div class="normal_text d-none fs-3 text-center mb-5" id="end_result"></div>
+        <div class="final_answer text-black d-none fs-3 text-center mb-5" id="end_result"></div>
         <div class="explain_box">
             <div class="normal_text fs-sm-3 mx-4 fs-lg-5">by incorporating these three tool I have created a website.
-            to start:<br> 1.Just Add tasks<br> 2.set how long they take<br> 3.pin your home and office<br> then let RainScope tell you which chores you can finish under sunshine or when to grab an umbrella.<br> Stay one step ahead of the weather and get things done, rain or shine.</div>
+            to start:<br> 1.check your city to get rain time<br> 2.set tasks and how long they take<br> 3.pin your home and office<br> then let RainScope tell you which chores you can finish under sunshine or when to grab an umbrella.<br> Stay one step ahead of the weather and get things done, rain or shine.</div>
         </div>
         
         <div class="scenario row fs-1  justify-content-center">
